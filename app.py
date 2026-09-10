@@ -97,7 +97,7 @@ def scan_code(code_text: str) -> list[dict]:
                     "code_snippet": stripped,
                     "matched_value": match.group(0)
                 })
-    return findings
+   return findings
 
 # زر الفحص
 st.write("")
@@ -123,18 +123,15 @@ if st.button("🚀 ابدأ الفحص الأمني الشامل", type="primary
                 st.balloons()
                 st.success("🎉 الكود آمن تماماً! لم يتم العثور على أي ثغرات برمجية مسجلة.")
     else:
-        st.warning("⚠️ الرجاء إدخال كود أو رفع ملف أولاً لإجراء الفحص.")
-        findings.append({
-    "line": line_num,
-    "issue": rule["name"],
-    "severity": rule["severity"],
-    "scenario": rule["attack_scenario"],
-    "fix": rule["fix"],
-    "code_snippet": stripped,
-    "matched_value": match.group(0)
-})
+    st.warning("الرجاء إدخال كود أو رفع ملف أولاً لإجراء الفحص! ⚠️")
 
-    return findings
+uploaded_file = st.file_uploader(
+    "اختر ملف برمجي لفحصه (.py, .js, .txt)",
+    type=["py", "txt", "js"]
+)
+
+
+        return findings
 
 
 uploaded_file = st.file_uploader(
