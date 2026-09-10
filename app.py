@@ -1,7 +1,5 @@
 import re
-
 import streamlit as st
-
 
 st.set_page_config(
     page_title="CodeGuard - Scanner",
@@ -92,12 +90,12 @@ if uploaded_file is not None:
             if results:
                 st.error(f"تم العثور على {len(results)} ثغرة أمنية!")
                 for item in results:
-                    with st.expander(
-                        f"⚠️ {item['issue']} (السطر {item['line']}) - "
-                        f"درجة الخطورة: {item['severity']} ):
+                    with st.expander(f"⚠️ {item['issue']} (السطر {item['line']})"):
+                        st.write(f"درجة الخطورة: {item['severity']}")
                         st.write(f"**القيمة المكتشفة:** `{item['matched_value']}`")
                         st.write(f"**السطر البرمجي:** `{item['code_snippet']}`")
                         st.write(f"**سيناريو الهجوم:** {item['scenario']}")
                         st.success(f"**طريقة الإصلاح:** {item['fix']}")
             else:
                 st.success("🎉 الكود آمن تمامًا! لم يتم العثور على ثغرات مسجلة.")
+
