@@ -124,12 +124,15 @@ if st.button("🚀 ابدأ الفحص الأمني الشامل", type="primary
                 st.success("🎉 الكود آمن تماماً! لم يتم العثور على أي ثغرات برمجية مسجلة.")
     else:
         st.warning("⚠️ الرجاء إدخال كود أو رفع ملف أولاً لإجراء الفحص.")
-                        "scenario": rule["attack_scenario"],
-                        "fix": rule["fix"],
-                        "code_snippet": stripped,
-                        "matched_value": match.group(0),
-                    }
-                )
+                        findings.append({
+    "line": line_num,
+    "issue": rule["name"],
+    "severity": rule["severity"],
+    "scenario": rule["attack_scenario"],
+    "fix": rule["fix"],
+    "code_snippet": stripped,
+    "matched_value": match.group(0)
+})
 
     return findings
 
